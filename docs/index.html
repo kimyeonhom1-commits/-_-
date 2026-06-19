@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TLS vs RF 통계 대시보드</title>
+  <style>
+    :root{--ink:#172033;--muted:#667085;--line:#d8dee8;--paper:#fff;--wash:#f5f7fb;--green:#2e8b57;--slate:#697586;--red:#b42318}*{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.5}header{padding:32px clamp(18px,4vw,56px) 24px;background:var(--paper);border-bottom:1px solid var(--line)}main{padding:24px clamp(18px,4vw,56px) 44px}h1{margin:0 0 8px;font-size:clamp(28px,4vw,46px);letter-spacing:0}h2{margin:0 0 14px;font-size:22px;letter-spacing:0}p{margin:0;color:var(--muted);max-width:980px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}.stat,.panel{background:var(--paper);border:1px solid var(--line);border-radius:8px}.stat{padding:16px;min-height:92px}.stat span{display:block;color:var(--muted);font-size:13px}.stat strong{display:block;margin-top:8px;font-size:26px}.grid{display:grid;gap:16px}.two{grid-template-columns:repeat(2,minmax(0,1fr))}section{margin-bottom:28px}.panel{padding:18px;overflow:hidden}.legend{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:12px;color:var(--muted);font-size:13px}.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.bar-row{display:grid;grid-template-columns:86px 1fr 76px;gap:10px;align-items:center;margin:12px 0}.track{height:18px;background:#edf1f6;border-radius:5px;overflow:hidden}.bar{height:100%;border-radius:5px}.bar.tls{background:var(--slate)}.bar.rf{background:var(--green)}.label{font-size:14px}.value{text-align:right;font-variant-numeric:tabular-nums;color:#344054}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:8px;overflow:hidden;font-size:14px}th,td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}tr:last-child td{border-bottom:0}th{background:#eef2f7;color:#38455a}.note{margin-top:12px;padding:12px 14px;border:1px solid #f1c9c5;border-radius:8px;background:#fff7f6;color:var(--red);font-size:14px}@media(max-width:860px){.stats,.two{grid-template-columns:1fr}.bar-row{grid-template-columns:70px 1fr 62px}}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>TLS vs RF postprocess 통계 대시보드</h1>
+    <p>GitHub Pages에서 바로 볼 수 있는 정적 대시보드입니다. 파일명은 익명화했고 원본 CSV는 공개 저장소에 포함하지 않았습니다.</p>
+    <div class="stats">
+      <div class="stat"><span>공통 파일</span><strong>15</strong></div>
+      <div class="stat"><span>Voxel 수</span><strong>3</strong></div>
+      <div class="stat"><span>Metric 수</span><strong>5</strong></div>
+      <div class="stat"><span>기준 Metric</span><strong>F1</strong></div>
+    </div>
+  </header>
+  <main>
+    <section>
+      <h2>Voxel별 평균 F1</h2>
+      <div class="panel">
+        <div class="legend"><span><i class="dot" style="background:#697586"></i>TLS</span><span><i class="dot" style="background:#2e8b57"></i>RF postprocess</span></div>
+        <div class="bar-row"><div class="label">0.005 TLS</div><div class="track"><div class="bar tls" style="width:93.2%"></div></div><div class="value">0.9318</div></div>
+        <div class="bar-row"><div class="label">0.005 RF</div><div class="track"><div class="bar rf" style="width:96.6%"></div></div><div class="value">0.9661</div></div>
+        <div class="bar-row"><div class="label">0.01 TLS</div><div class="track"><div class="bar tls" style="width:95.6%"></div></div><div class="value">0.9557</div></div>
+        <div class="bar-row"><div class="label">0.01 RF</div><div class="track"><div class="bar rf" style="width:97.5%"></div></div><div class="value">0.9746</div></div>
+        <div class="bar-row"><div class="label">0.02 TLS</div><div class="track"><div class="bar tls" style="width:96.6%"></div></div><div class="value">0.9664</div></div>
+        <div class="bar-row"><div class="label">0.02 RF</div><div class="track"><div class="bar rf" style="width:97.8%"></div></div><div class="value">0.9780</div></div>
+      </div>
+    </section>
+    <section>
+      <h2>기술통계</h2>
+      <div class="table-wrap"><table><thead><tr><th>Model</th><th>Voxel</th><th>Mean</th><th>Median</th><th>Std</th><th>N</th></tr></thead><tbody>
+        <tr><td>RF postprocess</td><td>0.005</td><td>0.9661</td><td>0.9688</td><td>0.0177</td><td>15</td></tr>
+        <tr><td>TLS</td><td>0.005</td><td>0.9318</td><td>0.9425</td><td>0.0347</td><td>15</td></tr>
+        <tr><td>RF postprocess</td><td>0.01</td><td>0.9746</td><td>0.9799</td><td>0.0157</td><td>15</td></tr>
+        <tr><td>TLS</td><td>0.01</td><td>0.9557</td><td>0.9656</td><td>0.0224</td><td>15</td></tr>
+        <tr><td>RF postprocess</td><td>0.02</td><td>0.9780</td><td>0.9824</td><td>0.0126</td><td>15</td></tr>
+        <tr><td>TLS</td><td>0.02</td><td>0.9664</td><td>0.9732</td><td>0.0153</td><td>15</td></tr>
+      </tbody></table></div>
+    </section>
+    <section>
+      <h2>파일별 F1 개선 상위 10개</h2>
+      <div class="grid two">
+        <div class="panel">
+          <div class="bar-row"><div class="label">File_12</div><div class="track"><div class="bar rf" style="width:100%"></div></div><div class="value">+0.0886</div></div>
+          <div class="bar-row"><div class="label">File_08</div><div class="track"><div class="bar rf" style="width:68.8%"></div></div><div class="value">+0.0610</div></div>
+          <div class="bar-row"><div class="label">File_11</div><div class="track"><div class="bar rf" style="width:60.1%"></div></div><div class="value">+0.0533</div></div>
+          <div class="bar-row"><div class="label">File_15</div><div class="track"><div class="bar rf" style="width:60.0%"></div></div><div class="value">+0.0532</div></div>
+          <div class="bar-row"><div class="label">File_05</div><div class="track"><div class="bar rf" style="width:55.7%"></div></div><div class="value">+0.0493</div></div>
+          <div class="bar-row"><div class="label">File_09</div><div class="track"><div class="bar rf" style="width:41.8%"></div></div><div class="value">+0.0371</div></div>
+          <div class="bar-row"><div class="label">File_07</div><div class="track"><div class="bar rf" style="width:30.8%"></div></div><div class="value">+0.0273</div></div>
+          <div class="bar-row"><div class="label">File_04</div><div class="track"><div class="bar rf" style="width:26.4%"></div></div><div class="value">+0.0234</div></div>
+          <div class="bar-row"><div class="label">File_03</div><div class="track"><div class="bar rf" style="width:23.7%"></div></div><div class="value">+0.0210</div></div>
+          <div class="bar-row"><div class="label">File_14</div><div class="track"><div class="bar rf" style="width:23.5%"></div></div><div class="value">+0.0209</div></div>
+        </div>
+        <div class="panel table-wrap"><table><thead><tr><th>File</th><th>TLS F1</th><th>RF F1</th><th>RF - TLS</th></tr></thead><tbody>
+          <tr><td>File_12</td><td>0.8765</td><td>0.9651</td><td>+0.0886</td></tr><tr><td>File_08</td><td>0.8679</td><td>0.9289</td><td>+0.0610</td></tr><tr><td>File_11</td><td>0.9155</td><td>0.9688</td><td>+0.0533</td></tr><tr><td>File_15</td><td>0.8801</td><td>0.9333</td><td>+0.0532</td></tr><tr><td>File_05</td><td>0.9013</td><td>0.9507</td><td>+0.0493</td></tr><tr><td>File_09</td><td>0.9384</td><td>0.9754</td><td>+0.0371</td></tr><tr><td>File_07</td><td>0.9622</td><td>0.9895</td><td>+0.0273</td></tr><tr><td>File_04</td><td>0.9355</td><td>0.9589</td><td>+0.0234</td></tr><tr><td>File_03</td><td>0.9579</td><td>0.9789</td><td>+0.0210</td></tr><tr><td>File_14</td><td>0.9637</td><td>0.9846</td><td>+0.0209</td></tr>
+        </tbody></table></div>
+      </div>
+      <p class="note">양수는 RF postprocess가 TLS보다 높은 값을 의미합니다. 파일명은 File_01 형식으로 익명화했습니다.</p>
+    </section>
+    <section>
+      <h2>Wilcoxon 부호순위검정 요약</h2>
+      <div class="table-wrap"><table><thead><tr><th>Metric</th><th>Voxel</th><th>N</th><th>TLS Mean</th><th>RF Mean</th><th>Diff</th><th>p-value</th><th>Sig.</th></tr></thead><tbody>
+        <tr><td>F1</td><td>0.005</td><td>15</td><td>0.9318</td><td>0.9661</td><td>+0.0342</td><td>6.10e-05</td><td>***</td></tr><tr><td>F1</td><td>0.01</td><td>15</td><td>0.9557</td><td>0.9746</td><td>+0.0190</td><td>6.10e-05</td><td>***</td></tr><tr><td>F1</td><td>0.02</td><td>15</td><td>0.9664</td><td>0.9780</td><td>+0.0116</td><td>1.22e-04</td><td>***</td></tr><tr><td>Precision</td><td>0.005</td><td>15</td><td>0.8962</td><td>0.9553</td><td>+0.0591</td><td>6.10e-05</td><td>***</td></tr><tr><td>Precision</td><td>0.01</td><td>15</td><td>0.9343</td><td>0.9698</td><td>+0.0355</td><td>6.10e-05</td><td>***</td></tr><tr><td>Precision</td><td>0.02</td><td>15</td><td>0.9475</td><td>0.9767</td><td>+0.0291</td><td>1.22e-04</td><td>***</td></tr><tr><td>Recall</td><td>0.005</td><td>15</td><td>0.9724</td><td>0.9777</td><td>+0.0053</td><td>0.0637</td><td>ns</td></tr><tr><td>Recall</td><td>0.01</td><td>15</td><td>0.9789</td><td>0.9800</td><td>+0.0011</td><td>0.7615</td><td>ns</td></tr><tr><td>Recall</td><td>0.02</td><td>15</td><td>0.9865</td><td>0.9798</td><td>-0.0067</td><td>0.1876</td><td>ns</td></tr>
+      </tbody></table></div>
+    </section>
+    <section>
+      <h2>런타임</h2>
+      <div class="table-wrap"><table><thead><tr><th>Model</th><th>Voxel</th><th>Minutes</th><th>N files</th><th>Source</th></tr></thead><tbody>
+        <tr><td>RF postprocess</td><td>0.005</td><td>118.08</td><td>15</td><td>run_py_condition_total</td></tr><tr><td>TLS</td><td>0.005</td><td>72.50</td><td>15</td><td>sum_tls_log_elapsed</td></tr><tr><td>RF postprocess</td><td>0.01</td><td>55.17</td><td>15</td><td>run_py_condition_total</td></tr><tr><td>TLS</td><td>0.01</td><td>37.59</td><td>15</td><td>sum_tls_log_elapsed</td></tr><tr><td>RF postprocess</td><td>0.02</td><td>20.52</td><td>15</td><td>run_py_condition_total</td></tr><tr><td>TLS</td><td>0.02</td><td>13.10</td><td>15</td><td>sum_tls_log_elapsed</td></tr>
+      </tbody></table></div>
+    </section>
+  </main>
+</body>
+</html>
