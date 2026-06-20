@@ -1,0 +1,14 @@
+.venv/
+.env
+.env.*
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+outputs/
+logs/
+data_raw/
+models/
+checkpoints/
+.openclaw/
+.config/
+.nv/
