@@ -19,7 +19,7 @@ python --version
 - 데이터 분석과 노트북
 - Python 코드 생성, 정리, 테스트
 
-원본 데이터는 호스트의 `/home/kimyeonho/data_raw`에 둘 수 있습니다. 실행 격리 환경에서는 `/data_raw`로 읽기 전용 마운트됩니다.
+원본 데이터는 호스트의 `~/data_raw`에 둘 수 있습니다. 실행 격리 환경에서는 `/data_raw`로 읽기 전용 마운트됩니다.
 
 ## Discord 관제 명령
 
